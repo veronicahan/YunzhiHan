@@ -9,6 +9,80 @@
   <title>Teaching | Yunzhi Han</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&amp;family=Source+Sans+3:wght@400;600&amp;display=swap">
   <link rel="stylesheet" href="style.css">
+  <style>
+    .teaching-page {
+      padding-bottom: clamp(3rem, 8vw, 6rem);
+    }
+
+    .teaching-page .page-title {
+      padding-block: clamp(3rem, 8vw, 5rem) 2rem;
+    }
+
+    .teaching-page .course {
+      max-width: 49rem;
+      padding: clamp(1.25rem, 5vw, 2.75rem);
+      border: 1px solid var(--line);
+      border-radius: 1rem;
+      background: #fbfaf5;
+    }
+
+    .teaching-page #course-title {
+      font-size: clamp(2.15rem, 5vw, 3rem);
+    }
+
+    .teaching-page .materials {
+      margin-top: 2rem;
+    }
+
+    .teaching-page .materials h3 {
+      margin-bottom: .85rem;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: .025em;
+    }
+
+    .teaching-page .materials ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .teaching-page .materials li {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: .65rem 1.5rem;
+      padding-block: 1rem;
+      border-top: 1px solid var(--line);
+    }
+
+    .material-name {
+      flex: 1 1 14rem;
+      min-width: 0;
+      overflow-wrap: anywhere;
+      font-family: "Source Sans 3", "PingFang SC", "Microsoft YaHei", sans-serif;
+      line-height: 1.7;
+    }
+
+    .material-action {
+      display: inline-flex;
+      min-height: 2.75rem;
+      align-items: center;
+      padding: .45rem .85rem;
+      border: 1px solid #b9c8bc;
+      border-radius: .45rem;
+      background: #eef2eb;
+      font-size: .95rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .material-action:hover, .material-action:focus-visible {
+      background: #dfe9df;
+      color: var(--ink);
+    }
+  </style>
 </head>
 <body>
   <header class="wrap">
@@ -19,7 +93,7 @@
       <a href="teaching.html" aria-current="page">Teaching</a>
     </nav>
   </header>
-  <main class="wrap">
+  <main class="wrap teaching-page">
     <h1 class="page-title" id="teaching">Teaching</h1>
     <section class="course" aria-labelledby="course-title">
       <div id="201-listening">
@@ -32,13 +106,13 @@
             {% for file in course_files %}
             {% assign extension = file.extname | downcase %}
             <li>
-              <span>{{ file.basename | escape }}</span>
+              <span class="material-name">{{ file.basename | escape }}</span>
               {% if extension == ".pdf" %}
-              <a href="{{ file.path | relative_url }}">View PDF</a>
+              <a class="material-action" href="{{ file.path | relative_url }}">View PDF</a>
               {% elsif extension == ".pptx" or extension == ".ppt" %}
-              <a href="{{ file.path | relative_url }}" download>Download PowerPoint</a>
+              <a class="material-action" href="{{ file.path | relative_url }}" download>Download PowerPoint</a>
               {% else %}
-              <a href="{{ file.path | relative_url }}" download>Download {{ extension | remove_first: "." | upcase }}</a>
+              <a class="material-action" href="{{ file.path | relative_url }}" download>Download {{ extension | remove_first: "." | upcase }}</a>
               {% endif %}
             </li>
             {% endfor %}
