@@ -139,7 +139,17 @@
           {% if course_files.size > 0 %}
           <ul>
             {% for file in course_files %}
-            <li><a href="{{ file.path | relative_url }}">{{ file.name | escape }}</a></li>
+            {% assign extension = file.extname | downcase %}
+            <li>
+              <span>{{ file.basename | escape }}</span>
+              {% if extension == ".pdf" %}
+              <a href="{{ file.path | relative_url }}">View PDF</a>
+              {% elsif extension == ".pptx" or extension == ".ppt" %}
+              <a href="{{ file.path | relative_url }}" download>Download PowerPoint</a>
+              {% else %}
+              <a href="{{ file.path | relative_url }}" download>Download {{ extension | remove_first: "." | upcase }}</a>
+              {% endif %}
+            </li>
             {% endfor %}
           </ul>
           {% else %}
