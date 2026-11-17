@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="我的个人主页，分享近期做的事与写下的想法。">
+  <title>我的个人主页</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f6f4ed;
+      --ink: #20372f;
+      --muted: #4b6056;
+      --line: #cdd5ca;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 1rem/1.7 "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    }
+
+    .wrap { width: min(100% - 3rem, 55rem); margin-inline: auto; }
+
+    header, footer {
+      padding-block: 1.25rem;
+      font-size: .875rem;
+    }
+
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: .5rem 2rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    nav { display: flex; gap: 1.25rem; }
+
+    a { color: inherit; text-underline-offset: .25em; }
+    a:hover { color: #367454; }
+    a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: clamp(1.5rem, 5vw, 4rem);
+      align-items: center;
+      padding-block: clamp(3rem, 10vw, 7rem);
+    }
+
+    h1, h2 {
+      margin: 0;
+      font-family: "Songti SC", "SimSun", serif;
+      line-height: 1.2;
+    }
+
+    h1 { font-size: clamp(3.2rem, 8vw, 6.25rem); }
+    h2 { font-size: 1.6rem; }
+    p { margin: 0; color: var(--muted); }
+    .hero p { max-width: 22em; margin-top: 1.3rem; }
+
+    .art {
+      aspect-ratio: 5 / 4;
+      border: 1px solid #a9bcaa;
+      border-radius: .5rem;
+      background:
+        repeating-radial-gradient(ellipse at 30% 125%, transparent 0 17px, #3a665659 18px 19px, transparent 20px 26px),
+        radial-gradient(circle at 72% 27%, #f7d5a4 0 10%, transparent 10.5%),
+        linear-gradient(140deg, #e7edda 5%, #b9d1b6 55%, #638c76 100%);
+    }
+
+    section { scroll-margin-top: 1rem; }
+
+    .entry {
+      display: grid;
+      grid-template-columns: minmax(8rem, 1fr) 2.5fr;
+      gap: .65rem 2rem;
+      border-top: 1px solid var(--line);
+      padding-block: 1.65rem;
+    }
+
+    footer { border-top: 1px solid var(--line); color: var(--muted); }
+
+    @media (max-width: 38rem) {
+      .wrap { width: min(100% - 2rem, 55rem); }
+      .hero, .entry { grid-template-columns: 1fr; }
+      .art { aspect-ratio: 2 / 1; }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <strong>我的个人主页</strong>
+    <nav aria-label="页面导航">
+      <a href="#about">关于</a>
+      <a href="#updates">近况</a>
+    </nav>
+  </header>
+  <main class="wrap">
+    <div class="hero">
+      <div>
+        <h1>你好。</h1>
+        <p>欢迎来到我的个人主页。这里会收录我做过的事，以及一些想写下来的想法。</p>
+      </div>
+      <div class="art" aria-hidden="true"></div>
+    </div>
+    <!-- 在这里换成你的名字、简介和近况，也可以加入项目或公开联系方式。 -->
+    <section class="entry" id="about">
+      <h2>关于我</h2>
+      <p>个人简介会在这里更新。</p>
+    </section>
+    <section class="entry" id="updates">
+      <h2>近况</h2>
+      <p>正在搭建这个网站。之后会在这里分享新项目和文章。</p>
+    </section>
+  </main>
+  <footer class="wrap">我的个人主页</footer>
+</body>
+</html>
