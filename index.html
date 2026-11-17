@@ -1,117 +1,29 @@
----
----
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Yunzhi Han’s personal website for research and teaching.">
-  <title>Yunzhi Han</title>
+  <title>Home | Yunzhi Han</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&amp;family=Source+Sans+3:wght@400;600&amp;display=swap">
-  <style>
-    :root {
-      color-scheme: light;
-      --paper: #f6f4ed;
-      --ink: #20372f;
-      --muted: #4b6056;
-      --line: #cdd5ca;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      background: var(--paper);
-      color: var(--ink);
-      font: 1.075rem/1.6 "Source Sans 3", system-ui, sans-serif;
-    }
-
-    .wrap { width: min(100% - 3rem, 55rem); margin-inline: auto; }
-
-    header, footer {
-      padding-block: 1.25rem;
-      font-size: .875rem;
-    }
-
-    header {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: .5rem 2rem;
-      border-bottom: 1px solid var(--line);
-    }
-
-    nav { display: flex; gap: 1.25rem; }
-
-    a { color: inherit; text-underline-offset: .25em; }
-    a:hover { color: #367454; }
-    a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1.15fr 1fr;
-      gap: clamp(1.5rem, 5vw, 4rem);
-      align-items: center;
-      padding-block: clamp(3rem, 10vw, 7rem);
-    }
-
-    h1, h2 {
-      margin: 0;
-      font-family: "Instrument Serif", Georgia, serif;
-      line-height: 1.2;
-    }
-
-    h1 { font-size: clamp(2.8rem, 7vw, 5.5rem); }
-    h2 { font-size: 2rem; }
-    h1 .ipa {
-      display: inline-block;
-      color: var(--muted);
-      font: 400 .36em/1.25 "Source Sans 3", system-ui, sans-serif;
-      letter-spacing: 0;
-      white-space: nowrap;
-    }
-    h3, h4 { margin: 0 0 .45rem; }
-    .materials { margin-top: .9rem; }
-    .materials ul { margin: .25rem 0; padding-left: 1.3rem; }
-    p { margin: 0; color: var(--muted); }
-    .hero p { max-width: 34em; margin-top: 1.3rem; }
-
-    .portrait {
-      display: block;
-      width: min(100%, 14rem);
-      height: auto;
-      justify-self: center;
-      border: 1px solid var(--line);
-      border-radius: .5rem;
-    }
-
-    section { scroll-margin-top: 1rem; }
-
-    .entry {
-      display: grid;
-      grid-template-columns: minmax(8rem, 1fr) 2.5fr;
-      gap: .65rem 2rem;
-      border-top: 1px solid var(--line);
-      padding-block: 1.65rem;
-    }
-
-    footer { border-top: 1px solid var(--line); color: var(--muted); }
-
-    @media (max-width: 38rem) {
-      .wrap { width: min(100% - 2rem, 55rem); }
-      .hero, .entry { grid-template-columns: 1fr; }
-      .portrait { justify-self: start; }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    const legacyPages = {
+      "#research": "research.html",
+      "#teaching": "teaching.html",
+      "#201-listening": "teaching.html#201-listening"
+    };
+    const destination = legacyPages[window.location.hash];
+    if (destination) window.location.replace(destination);
+  </script>
 </head>
 <body>
   <header class="wrap">
     <strong>Yunzhi Han</strong>
     <nav aria-label="Main navigation">
-      <a href="#home">Home</a>
-      <a href="#research">Research</a>
-      <a href="#teaching">Teaching</a>
+      <a href="./" aria-current="page">Home</a>
+      <a href="research.html">Research</a>
+      <a href="teaching.html">Teaching</a>
     </nav>
   </header>
   <main class="wrap">
@@ -120,43 +32,11 @@
         <h1 id="home-title">Yunzhi Han <span class="ipa" lang="zh-Latn-fonipa" title="Mandarin pronunciation">[xan˧˥ yn˧˥ ʈʂɻ̩˥]</span></h1>
         <p>Hi, I’m Yunzhi Han (<span lang="zh-Hans">韩昀芝</span>), and you can also call me Vera. I study fine-grained phonetic variation, with a particular interest in the acoustic properties of second-language (L2) speech. I also teach Mandarin Chinese to speakers of other languages. Outside of research and teaching, I enjoy resistance training and cooking.</p>
         <p><strong>Contact</strong><br>
-          <a href="mailto:hanyunzhi1101@gmail.com">hanyunzhi1101@gmail.com</a>
+          <a href="mailto:hanyunzhi1101@gmail.com">hanyunzhi1101@gmail.com</a><br>
+          <a href="https://www.researchgate.net/profile/Yunzhi-Han?ev=hdr_xprf">ResearchGate</a>
         </p>
       </div>
       <img class="portrait" src="portrait.jpg" width="637" height="850" alt="Portrait of Yunzhi Han">
-    </section>
-    <section class="entry" id="research">
-      <h2>Research</h2>
-      <p>Research interests, projects, and publications will be listed here.</p>
-    </section>
-    <section class="entry" id="teaching">
-      <h2>Teaching</h2>
-      <div id="201-listening">
-        <h3>201 Listening</h3>
-        <div class="materials">
-          <h4>Course Materials</h4>
-          {% assign course_files = site.static_files | where_exp: "file", "file.path contains '/teaching/201-listening/'" | sort: "name" %}
-          {% if course_files.size > 0 %}
-          <ul>
-            {% for file in course_files %}
-            {% assign extension = file.extname | downcase %}
-            <li>
-              <span>{{ file.basename | escape }}</span>
-              {% if extension == ".pdf" %}
-              <a href="{{ file.path | relative_url }}">View PDF</a>
-              {% elsif extension == ".pptx" or extension == ".ppt" %}
-              <a href="{{ file.path | relative_url }}" download>Download PowerPoint</a>
-              {% else %}
-              <a href="{{ file.path | relative_url }}" download>Download {{ extension | remove_first: "." | upcase }}</a>
-              {% endif %}
-            </li>
-            {% endfor %}
-          </ul>
-          {% else %}
-          <p>Course materials will appear here when available.</p>
-          {% endif %}
-        </div>
-      </div>
     </section>
   </main>
   <footer class="wrap">Yunzhi Han</footer>

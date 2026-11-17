@@ -1,0 +1,55 @@
+---
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Yunzhi Han’s personal website for research and teaching.">
+  <title>Teaching | Yunzhi Han</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&amp;family=Source+Sans+3:wght@400;600&amp;display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="wrap">
+    <strong>Yunzhi Han</strong>
+    <nav aria-label="Main navigation">
+      <a href="./">Home</a>
+      <a href="research.html">Research</a>
+      <a href="teaching.html" aria-current="page">Teaching</a>
+    </nav>
+  </header>
+  <main class="wrap">
+    <h1 class="page-title" id="teaching">Teaching</h1>
+    <section class="course" aria-labelledby="course-title">
+      <div id="201-listening">
+        <h2 id="course-title">201 Listening</h2>
+        <div class="materials">
+          <h3>Course Materials</h3>
+          {% assign course_files = site.static_files | where_exp: "file", "file.path contains '/teaching/201-listening/'" | sort: "name" %}
+          {% if course_files.size > 0 %}
+          <ul>
+            {% for file in course_files %}
+            {% assign extension = file.extname | downcase %}
+            <li>
+              <span>{{ file.basename | escape }}</span>
+              {% if extension == ".pdf" %}
+              <a href="{{ file.path | relative_url }}">View PDF</a>
+              {% elsif extension == ".pptx" or extension == ".ppt" %}
+              <a href="{{ file.path | relative_url }}" download>Download PowerPoint</a>
+              {% else %}
+              <a href="{{ file.path | relative_url }}" download>Download {{ extension | remove_first: "." | upcase }}</a>
+              {% endif %}
+            </li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <p>Course materials will appear here when available.</p>
+          {% endif %}
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap">Yunzhi Han</footer>
+</body>
+</html>
