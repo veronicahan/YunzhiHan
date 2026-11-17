@@ -64,14 +64,13 @@
     p { margin: 0; color: var(--muted); }
     .hero p { max-width: 34em; margin-top: 1.3rem; }
 
-    .art {
-      aspect-ratio: 5 / 4;
-      border: 1px solid #a9bcaa;
+    .portrait {
+      display: block;
+      width: min(100%, 20rem);
+      height: auto;
+      justify-self: center;
+      border: 1px solid var(--line);
       border-radius: .5rem;
-      background:
-        repeating-radial-gradient(ellipse at 30% 125%, transparent 0 17px, #3a665659 18px 19px, transparent 20px 26px),
-        radial-gradient(circle at 72% 27%, #f7d5a4 0 10%, transparent 10.5%),
-        linear-gradient(140deg, #e7edda 5%, #b9d1b6 55%, #638c76 100%);
     }
 
     section { scroll-margin-top: 1rem; }
@@ -89,7 +88,7 @@
     @media (max-width: 38rem) {
       .wrap { width: min(100% - 2rem, 55rem); }
       .hero, .entry { grid-template-columns: 1fr; }
-      .art { aspect-ratio: 2 / 1; }
+      .portrait { justify-self: start; }
     }
   </style>
 </head>
@@ -111,7 +110,7 @@
           <a href="mailto:hanyunzhi1101@gmail.com">hanyunzhi1101@gmail.com</a>
         </p>
       </div>
-      <div class="art" aria-hidden="true"></div>
+      <img class="portrait" src="portrait.jpg" width="637" height="850" alt="Portrait of Yunzhi Han">
     </section>
     <section class="entry" id="research">
       <h2>Research</h2>
