@@ -1,3 +1,5 @@
+---
+---
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Yunzhi Han’s personal website for research and teaching.">
   <title>Yunzhi Han</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&amp;family=Source+Sans+3:wght@400;600&amp;display=swap">
   <style>
     :root {
       color-scheme: light;
@@ -20,7 +23,7 @@
       margin: 0;
       background: var(--paper);
       color: var(--ink);
-      font: 1rem/1.7 system-ui, sans-serif;
+      font: 1.075rem/1.6 "Source Sans 3", system-ui, sans-serif;
     }
 
     .wrap { width: min(100% - 3rem, 55rem); margin-inline: auto; }
@@ -55,18 +58,28 @@
 
     h1, h2 {
       margin: 0;
-      font-family: Georgia, serif;
+      font-family: "Instrument Serif", Georgia, serif;
       line-height: 1.2;
     }
 
     h1 { font-size: clamp(2.8rem, 7vw, 5.5rem); }
-    h2 { font-size: 1.6rem; }
+    h2 { font-size: 2rem; }
+    h1 .ipa {
+      display: inline-block;
+      color: var(--muted);
+      font: 400 .36em/1.25 "Source Sans 3", system-ui, sans-serif;
+      letter-spacing: 0;
+      white-space: nowrap;
+    }
+    h3, h4 { margin: 0 0 .45rem; }
+    .materials { margin-top: .9rem; }
+    .materials ul { margin: .25rem 0; padding-left: 1.3rem; }
     p { margin: 0; color: var(--muted); }
     .hero p { max-width: 34em; margin-top: 1.3rem; }
 
     .portrait {
       display: block;
-      width: min(100%, 20rem);
+      width: min(100%, 14rem);
       height: auto;
       justify-self: center;
       border: 1px solid var(--line);
@@ -104,7 +117,7 @@
   <main class="wrap">
     <section class="hero" id="home" aria-labelledby="home-title">
       <div>
-        <h1 id="home-title">Yunzhi Han</h1>
+        <h1 id="home-title">Yunzhi Han <span class="ipa" lang="zh-Latn-fonipa" title="Mandarin pronunciation">[xan˧˥ yn˧˥ ʈʂɻ̩˥]</span></h1>
         <p>Hi, I’m Yunzhi Han (<span lang="zh-Hans">韩昀芝</span>), and you can also call me Vera. I study fine-grained phonetic variation, with a particular interest in the acoustic properties of second-language (L2) speech. I also teach Mandarin Chinese to speakers of other languages. Outside of research and teaching, I enjoy resistance training and cooking.</p>
         <p><strong>Contact</strong><br>
           <a href="mailto:hanyunzhi1101@gmail.com">hanyunzhi1101@gmail.com</a>
@@ -118,7 +131,22 @@
     </section>
     <section class="entry" id="teaching">
       <h2>Teaching</h2>
-      <p>Courses and teaching materials will be listed here.</p>
+      <div id="201-listening">
+        <h3>201 Listening</h3>
+        <div class="materials">
+          <h4>Course Materials</h4>
+          {% assign course_files = site.static_files | where_exp: "file", "file.path contains '/teaching/201-listening/'" | sort: "name" %}
+          {% if course_files.size > 0 %}
+          <ul>
+            {% for file in course_files %}
+            <li><a href="{{ file.path | relative_url }}">{{ file.name | escape }}</a></li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <p>Course materials will appear here when available.</p>
+          {% endif %}
+        </div>
+      </div>
     </section>
   </main>
   <footer class="wrap">Yunzhi Han</footer>
